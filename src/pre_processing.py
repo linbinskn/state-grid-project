@@ -13,12 +13,38 @@ from utils import *
     :return :data
     :rtype: object(pandas)
 """
-def fill_nan(data):
+def fill_nan_mean(data):
     values = dict([(colname, colvalue) for colname, colvalue in zip(data.columns.tolist(), data.mean().tolist())])
     data.fillna(value=values, inplace=True)
     return data
 
 
+"""
+    Usage:: fill NAN with preceding value
+    :param data: data from file1csv
+    :return :data
+    :rtype: object(pandas)
+"""
+def fill_nan_ffill(data):
+    data.fillna(method='ffill', inplace=True)
+    return data
+
+
+"""
+    Usage:: fill NAN with single_user_mean
+    :param data: data from file1csv
+    :return :data
+    :rtype: object(pandas)
+"""
+def fill_nan_user(data):
+    data = data.groupby('USERID').apply(lambda x:fill_userid_group(x))
+    return data
+
+
+def fill_userid_group(group):
+    values = dict([(colname, colvalue) for colname, colvalue in zip(group.columns.tolist(),group.mean().tolist())])
+    group.fillna(value=values, inplace=True)
+    return group
 
 """
     Usage:: split data into train and test
@@ -38,3 +64,5 @@ def traindata_split(full_data):
         day_data = split_data[split_data['DAY'] == day]
         train_data = pd.concat([train_data, day_data])
     return train_data, test_data
+
+
