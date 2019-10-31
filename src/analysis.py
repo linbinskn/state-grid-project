@@ -14,7 +14,6 @@ from utils import *
     :return :None
     :rtype: None
 """
-@timeit
 def perdayanalysis(data, user_id, day):
     userid_data = data[data['USERID'] == user_id]
     day_data = userid_data[userid_data['DAY'] == day]

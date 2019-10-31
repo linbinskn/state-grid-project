@@ -46,6 +46,10 @@ def fill_userid_group(group):
     group.fillna(value=values, inplace=True)
     return group
 
+
+
+
+
 """
     Usage:: split data into train and test
     :param data: full data including file1csv and four questionnaires
@@ -64,5 +68,4 @@ def traindata_split(full_data):
         day_data = split_data[split_data['DAY'] == day]
         train_data = pd.concat([train_data, day_data])
     return train_data, test_data
-
 

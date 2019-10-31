@@ -22,6 +22,7 @@ def load_data(filepath, filename):
 def load_fulldata():
     full_data = {}
     rootdir = join(os.getcwd(), 'dataset')
+    rootdir = 'C:\\tsinghua\\大数据系统基础B\\state grid project\\dataset'
     datanames = os.listdir(rootdir)
 
     for dataname in datanames:

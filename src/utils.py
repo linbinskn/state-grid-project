@@ -72,6 +72,7 @@ def timeit(method, start_log=None):
     return timed
 
 
+
 def log(entry: Any):
     global nesting_level
     space = "-" * (4 * nesting_level)
